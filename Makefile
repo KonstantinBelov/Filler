@@ -14,13 +14,13 @@ NAME = kbelov.filler
 
 FLAG = -Wall -Wextra -Werror
 
-SRC = ft_printf.c format.c parse.c output.c output_d.c output_oxx.c output_f.c
+SRC = fillit.c get_next_line.c
 
 OBJ = *.o
 
 LIBFT = ./libft/*.c
 
-HEADER = ft_printf.h
+HEADER = fillit.h
 
 all: $(NAME)
 
@@ -48,5 +48,8 @@ lldb: lib
 	gcc -g $(FLAG) $(SRC) main.c libft/libft.a -o ft_printf_lldb
 
 norme: 
-	norminette ft_printf.c format.c parse.c output.c output_d.c \
-		output_oxx.c output_f.c ft_printf.h Makefile
+	norminette filler.c get_next_line.c /libft/* filler.h Makefile
+
+play:
+	/resources/filler_vm ./filler_vm -f /resources/maps/map02 \
+	-p1 kbelov.fillit -p2 abanlin.filler
