@@ -14,19 +14,19 @@ NAME = kbelov.filler
 
 FLAG = -Wall -Wextra -Werror
 
-SRC = fillit.c get_next_line.c
+SRC = filler.c get_next_line.c
 
 OBJ = *.o
 
 LIBFT = ./libft/*.c
 
-HEADER = fillit.h
+HEADER = filler.h
 
 all: $(NAME)
 
 $(NAME):
-	gcc -c $(FLAG) $(SRC) $(LIBFT)
-	ar rcs $(NAME) $(OBJ)
+	gcc $(FLAG) $(SRC) $(LIBFT) -o $(NAME)
+	#ar rcs $(NAME) $(OBJ)
 
 lib:
 	@make -C libft
@@ -42,14 +42,14 @@ fclean: clean
 re: fclean all
 
 test: lib
-	gcc $(FLAG) $(SRC) main.c libft/libft.a -o ft_printf_makefile
+	gcc $(FLAG) $(SRC) main.c libft/libft.a -o filler_makefile
 
 lldb: lib
-	gcc -g $(FLAG) $(SRC) main.c libft/libft.a -o ft_printf_lldb
+	gcc -g $(FLAG) $(SRC) main.c libft/libft.a -o filler_lldb
 
 norme: 
 	norminette filler.c get_next_line.c /libft/* filler.h Makefile
 
 play:
-	/resources/filler_vm ./filler_vm -f /resources/maps/map02 \
-	-p1 kbelov.fillit -p2 abanlin.filler
+	./resources/filler_vm -f resources/maps/map00 \
+	-p1 kbelov.filler -p2 resources/players/abanlin.filler

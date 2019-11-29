@@ -16,6 +16,15 @@
 //# include "libft/libft.h"
 # include "get_next_line.h"
 
-void    filler();
+typedef	struct	s_state
+{
+	int map_x;
+	int map_n;
+	int player_n;
+}				t_state;
+
+int				main(void);
+void    		filler(t_state *state, char **line);
+void			del_state(t_state *state);
 
 #endif
