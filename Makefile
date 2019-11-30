@@ -53,3 +53,4 @@ norme:
 play:
 	./resources/filler_vm -f resources/maps/map00 \
 	-p1 kbelov.filler -p2 resources/players/abanlin.filler
+	# -p1 resources/players/hcao.filler -p2 resources/players/abanlin.filler

@@ -18,13 +18,21 @@
 
 typedef	struct	s_state
 {
-	int map_x;
-	int map_n;
-	int player_n;
+	int		map_n;
+	int		map_x;
+	int		player_n;
+	char	**map;
+	char	**piece;
 }				t_state;
 
 int				main(void);
-void    		filler(t_state *state, char **line);
-void			del_state(t_state *state);
+void			init_state(t_state *s);
+//void    		filler(t_state *s, char **line);
+void			parse_player(t_state *s, char **line);
+void			parse_map(t_state *s, char **line);
+void			parse_peace(t_state *s, char **line);
+void			heat_map(t_state *s);
+void			place_piece(t_state *s);
+//void			del_state(t_state *s);
 
 #endif
