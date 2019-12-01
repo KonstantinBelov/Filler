@@ -10,11 +10,11 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = kbelov.filler
+NAME = resources/players/kbelov.filler
 
 FLAG = -Wall -Wextra -Werror
 
-SRC = filler.c get_next_line.c
+SRC = filler.c output.c get_next_line.c
 
 OBJ = *.o
 
@@ -42,15 +42,15 @@ fclean: clean
 re: fclean all
 
 test: lib
-	gcc $(FLAG) $(SRC) main.c libft/libft.a -o filler_makefile
+	gcc $(FLAG) $(SRC) libft/libft.a -o filler_test
 
 lldb: lib
-	gcc -g $(FLAG) $(SRC) main.c libft/libft.a -o filler_lldb
+	gcc -g $(FLAG) $(SRC) libft/libft.a -o filler_lldb
 
 norme: 
-	norminette filler.c get_next_line.c /libft/* filler.h Makefile
+	norminette filler.c output.c get_next_line.c /libft/* filler.h Makefile
 
 play:
 	./resources/filler_vm -f resources/maps/map00 \
-	-p1 kbelov.filler -p2 resources/players/abanlin.filler
+	-p1 resources/players/kbelov.filler -p2 resources/players/abanlin.filler
 	# -p1 resources/players/hcao.filler -p2 resources/players/abanlin.filler
