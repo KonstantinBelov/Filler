@@ -68,13 +68,14 @@ int 	parse_piece(t_state *s, char **line)
     s->piece_x = ft_atoi(*line + 8);
     if (!(s->piece = (char **)malloc(s->piece_n * sizeof(char *))))
         return (-1);
-    get_next_line(0, line);
+    //get_next_line(0, line);
     while (++i < s->piece_n)
     {
+        get_next_line(0, line);
         if (!(s->piece[i] = (char *)malloc((s->piece_x + 1) * sizeof(char))))
             return (-1);
         s->piece[i] = ft_strdup(*line);
-        get_next_line(0, line);
+        //get_next_line(0, line);
     }
     return (0);
 }
@@ -82,28 +83,58 @@ int 	parse_piece(t_state *s, char **line)
 int		main(void)
 {
     t_state *s;
-    char    **line;
+    char    *line;
 
-    line = malloc(sizeof(char **));
-    s = malloc(sizeof(t_state *));
+    //line = malloc(sizeof(char **));
+    s = malloc(sizeof(t_state));
+    //line = NULL;
+    //*line = (char *)malloc((sizeof(char) * 256));
     init_state(s);
     //write(2, "state inited\n", 12);
-    get_next_line(0, line);
+    get_next_line(0, &line);
+    //get_next_line__(0, line);
     //write(2, "gnl1\n", 11);
-    if (ft_strstr(*line, "kbelov.filler"))
-		parse_player(s, line);
-    //write(2, "player parsed\n", 13);
-	get_next_line(0, line);
-	get_next_line(0, line);
-    parse_map(s, line);
+    if (ft_strstr(line, "kbelov.filler"))
+		parse_player(s, &line);
+    write(2, "player parsed\n", 14);
+	get_next_line(0, &line);
+    write(2, "axes x read\n", 12);
+	get_next_line(0, &line);
+    write(2, "first line map read\n", 20);
+    parse_map(s, &line);
+    write(2, "map parsed\n", 11);
     //print_matrix_test(s->map, s->map_n, s->map_x);
-    parse_piece(s, line);
+    parse_piece(s, &line);
     //print_matrix_test(s->piece, s->piece_n, s->piece_x);
     heat_map(s);
-    //write(2, "map heated\n", 11);
+    write(2, "map heated\n", 11);
     place_piece(s);
-    //write(2, "piece placed\n", 13);
-	ft_strdel(line);
+    write(2, "piece placed\n", 13);
+	ft_strdel(&line);
     //del_state(s);
     return (0);
+}
+
+char	*ft_strstr_(const char *haystack, const char *needle)
+{
+	unsigned int	i;
+	unsigned int	j;
+
+	if (*needle == '\0')
+		return ((char *)haystack);
+	i = 0;
+	while (haystack[i] != '\0')
+	{
+		j = 0;
+		while (needle[j] == haystack[i + j])
+		{
+			if (needle[j + 1] == '\0')
+			{
+				return ((char *)haystack + i);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (NULL);
 }

@@ -12,7 +12,7 @@
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# define BUFF_SIZE 1
+# define BUFF_SIZE 32
 
 # include "libft/libft.h"
 # include <stdio.h>
@@ -28,9 +28,14 @@ typedef struct	s_line
 	struct s_line		*next;
 }				t_line;
 
+int		get_next_line__(const int fd, char **line);
 int		len(char *s, int c);
 char	*ft_str_ljoin(char **s1, char **s2);
 void	get_tail(const int fd, char *buf, t_line **head);
 int		reading(int fd, char **line, t_line **head);
+
+char	*ft_strnew_(size_t size);
+
+int		get_next_line(const int fd, char **line);
 */
 #endif

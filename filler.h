@@ -43,4 +43,6 @@ void			place_piece(t_state *s);
 
 void			print_matrix_test(char **matrix, int n, int x);
 
+char	*ft_strstr_(const char *haystack, const char *needle);
+
 #endif
