@@ -14,10 +14,10 @@
 
 void	heat_map(t_state *s)
 {
-    s->x = 0;
+    s->player_n = 1;
 }
 
-void	place_piece(t_state *s)
+void	find_place(t_state *s)
 {
     int n;
 	int x;
@@ -31,12 +31,28 @@ void	place_piece(t_state *s)
 			if (s->map[n][x] == s->p_char || s->map[n][x] == s->p_char + 32)
 			{
 				/*ft_putnbr(n);
-				write(1, " ", 1);
-				ft_putnbr(x);*/
+				//write(1, " ", 1);
+				ft_putchar(' ');
+				ft_putnbr(x);
+				//write(1, "\n", 1);
+				ft_putnbr(n);
+				ft_putchar(' ');
+				ft_putnbr(x);
+				ft_putchar('\n');*/
+				s->n = n;
+				s->x = x;
 			}
 		}
 	}
-    write(1, "8 2", 3);
+    //write(1, "8 2", 3);
+	//write(1, "\n", 1);
+}
+
+void	place_piece(t_state *s)
+{
+	ft_putnbr(s->n);
+	ft_putchar(' ');
+	ft_putnbr(s->x);
 }
 
 void		print_matrix_test(char **matrix, int n, int x)

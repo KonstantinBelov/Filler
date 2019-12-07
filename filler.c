@@ -51,7 +51,8 @@ void	parse_map(t_state *s, char **line)
 	int i;
     
     i = 0;
-    while (!ft_strstr(*line, "Piece"))
+    //while (!ft_strstr(*line, "Piece"))
+    while (i < s->map_n)
 	{
 		s->map[i] = ft_strsub(*line, 4, s->map_x);
         i++;
@@ -91,26 +92,32 @@ int		main(void)
     //*line = (char *)malloc((sizeof(char) * 256));
     init_state(s);
     //write(2, "state inited\n", 12);
-    get_next_line(0, &line);
     //get_next_line__(0, line);
     //write(2, "gnl1\n", 11);
-    if (ft_strstr(line, "kbelov.filler"))
-		parse_player(s, &line);
-    write(2, "player parsed\n", 14);
-	get_next_line(0, &line);
-    write(2, "axes x read\n", 12);
-	get_next_line(0, &line);
-    write(2, "first line map read\n", 20);
-    parse_map(s, &line);
-    write(2, "map parsed\n", 11);
-    //print_matrix_test(s->map, s->map_n, s->map_x);
-    parse_piece(s, &line);
-    //print_matrix_test(s->piece, s->piece_n, s->piece_x);
-    heat_map(s);
-    write(2, "map heated\n", 11);
-    place_piece(s);
-    write(2, "piece placed\n", 13);
-	ft_strdel(&line);
+    while (1)
+    {
+        get_next_line(0, &line);
+        if (ft_strstr(line, "kbelov.filler"))
+            parse_player(s, &line);
+        //write(2, "player parsed\n", 14);
+        get_next_line(0, &line);
+        if (ft_strstr(line, "== O fin:"))
+            return (1);
+        //write(2, "axes x read\n", 12);
+        get_next_line(0, &line);
+        //write(2, "first line map read\n", 20);
+        parse_map(s, &line);
+        //write(2, "map parsed\n", 11);
+        //print_matrix_test(s->map, s->map_n, s->map_x);
+        parse_piece(s, &line);
+        //print_matrix_test(s->piece, s->piece_n, s->piece_x);
+        heat_map(s);
+        //write(2, "map heated\n", 11);
+        find_place(s);
+        place_piece(s);
+        //write(2, "piece placed\n", 13);
+    }
+    ft_strdel(&line);
     //del_state(s);
     return (0);
 }

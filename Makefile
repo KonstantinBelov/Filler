@@ -53,4 +53,10 @@ norme:
 play:
 	./resources/filler_vm -f resources/maps/map00 \
 	-p1 resources/players/kbelov.filler -p2 resources/players/abanlin.filler
-	# -p1 resources/players/hcao.filler -p2 resources/players/abanlin.filler
+
+pbots:
+	./resources/filler_vm -f resources/maps/map00 \
+	-p1 resources/players/hcao.filler -p2 resources/players/abanlin.filler
+
+cleanrepo:
+	@/bin/rm -rf filler_lldb filler_lldb.dSYM 

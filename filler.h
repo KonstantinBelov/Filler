@@ -26,8 +26,8 @@ typedef	struct	s_state
 	int		piece_n;
 	int		piece_x;
 	char	**piece;
+	int		n;
 	int		x;
-
 }				t_state;
 
 int				main(void);
@@ -37,6 +37,7 @@ void			parse_map(t_state *s, char **line);
 //char			**parse_map(t_state *s, char **line);
 int				parse_piece(t_state *s, char **line);
 void			heat_map(t_state *s);
+void			find_place(t_state *s);
 void			place_piece(t_state *s);
 //void			del_state(t_state *s);
 //void    		filler(t_state *s, char **line);
