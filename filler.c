@@ -21,42 +21,49 @@ void    init_state(t_state *s)
     s->piece_n = 0;
     s->piece_x = 0;
     s->piece = NULL;
+    s->n = 0;
+    s->x = 0;
 }
 
 void	parse_player(t_state *s, char **line)
 {
-    int i;
-
-    //write(2, "fuck\n", 11);
-    i = -1;
-    if (ft_strstr(*line, "p1 : [players/kbelov.filler]"))
+    write(2, "parsing player\n", 15);
+    get_next_line(0, line);
+    fprintf(stderr, "got line: %s\n", *line);
+    if (ft_strstr(*line, "p1 : "))
+    {
         s->player_n = 1;
-    else if (ft_strstr(*line, "p2 : [players/kbelov.filler]"))
+        //write(2, "s->player saved as 1\n", 21);
+    }
+    //else if (ft_strstr(*line, "p2 : [players/kbelov.filler]"))
+    else if (ft_strstr(*line, "p2 : "))
         s->player_n = 2;
     if (s->player_n == 1)
+    {
         s->p_char = 'O';
+        //write(2, "s->p_char saved as O\n", 21);
+    }
     else if (s->player_n == 2)
         s->p_char = 'X';
-    get_next_line(0, line);
-	s->map_n = ft_atoi(*line + 8);
-    s->map_x = ft_atoi(*line + 10);
-    //write(2, "map heated\n", 11);
-    s->map = (char **)malloc(s->map_n * sizeof(char *));
-    while (++i < s->map_n)
-        s->map[i] = (char *)malloc((s->map_x + 1) * sizeof(char)); 
 }
 
 void	parse_map(t_state *s, char **line)
 {
 	int i;
     
-    i = 0;
-    //while (!ft_strstr(*line, "Piece"))
-    while (i < s->map_n)
+    i = -1;
+    //get_next_line(0, line);
+    s->map_n = ft_atoi(*line + 8);
+    s->map_x = ft_atoi(*line + 10);
+    s->map = (char **)malloc(s->map_n * sizeof(char *));
+    while (++i < s->map_n)
+        s->map[i] = (char *)malloc((s->map_x + 1) * sizeof(char)); 
+    i = -1;
+    get_next_line(0, line);
+    while (++i < s->map_n)
 	{
-		s->map[i] = ft_strsub(*line, 4, s->map_x);
-        i++;
-        get_next_line(0, line);
+		get_next_line(0, line);
+        s->map[i] = ft_strsub(*line, 4, s->map_x);
 	}
 }
 
@@ -65,18 +72,17 @@ int 	parse_piece(t_state *s, char **line)
     int i;
 
     i = -1;
+    get_next_line(0, line);
     s->piece_n = ft_atoi(*line + 6);
     s->piece_x = ft_atoi(*line + 8);
     if (!(s->piece = (char **)malloc(s->piece_n * sizeof(char *))))
         return (-1);
-    //get_next_line(0, line);
     while (++i < s->piece_n)
     {
         get_next_line(0, line);
         if (!(s->piece[i] = (char *)malloc((s->piece_x + 1) * sizeof(char))))
             return (-1);
         s->piece[i] = ft_strdup(*line);
-        //get_next_line(0, line);
     }
     return (0);
 }
@@ -94,17 +100,12 @@ int		main(void)
     //write(2, "state inited\n", 12);
     //get_next_line__(0, line);
     //write(2, "gnl1\n", 11);
-    while (1)
+    parse_player(s, &line);
+    while (get_next_line(0, &line))
     {
-        get_next_line(0, &line);
-        if (ft_strstr(line, "kbelov.filler"))
-            parse_player(s, &line);
-        //write(2, "player parsed\n", 14);
-        get_next_line(0, &line);
-        if (ft_strstr(line, "== O fin:"))
-            return (1);
+        //if (ft_strstr(line, "== O fin:"))
+        //    return (1);
         //write(2, "axes x read\n", 12);
-        get_next_line(0, &line);
         //write(2, "first line map read\n", 20);
         parse_map(s, &line);
         //write(2, "map parsed\n", 11);
@@ -113,7 +114,9 @@ int		main(void)
         //print_matrix_test(s->piece, s->piece_n, s->piece_x);
         heat_map(s);
         //write(2, "map heated\n", 11);
+        //write(2, "1) about to start looking for a place\n", 38);
         find_place(s);
+        //write(2, "4) about to place piece\n", 24);
         place_piece(s);
         //write(2, "piece placed\n", 13);
     }

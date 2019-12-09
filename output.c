@@ -14,12 +14,7 @@
 
 void	heat_map(t_state *s)
 {
-    s->player_n = 1;
-}
-
-void	find_place(t_state *s)
-{
-    int n;
+	int n;
 	int x;
 
 	n = -1;
@@ -28,31 +23,58 @@ void	find_place(t_state *s)
 		x = -1;
 		while (++x < s->map_x)
 		{
-			if (s->map[n][x] == s->p_char || s->map[n][x] == s->p_char + 32)
+			if (s->map[n][x] == '.')
+				heat_cell(s, n, x);
+		}
+	}
+}
+
+int		heat_cell(t_state *s, int n, int x)
+{
+	if (s->map[n][x] == '.')
+}
+
+void	find_place(t_state *s)
+{
+    int n;
+	int x;
+
+	//write(2, "2) actually looking for a place\n", 32);
+	fprintf(stderr, "s->p_char = %c\n", s->p_char);
+	n = -1;
+	while (++n < s->map_n)
+	{
+		x = -1;
+		while (++x < s->map_x)
+		{
+			//write(2, &n, 4);
+			//write(2, &x, 4);
+			//fprintf(stderr, "n & x values: %d %d\n", n, x);
+			if (s->map[n][x] == s->p_char/*|| s->map[n][x] == s->p_char + 32*/)
 			{
-				/*ft_putnbr(n);
-				//write(1, " ", 1);
-				ft_putchar(' ');
-				ft_putnbr(x);
-				//write(1, "\n", 1);
-				ft_putnbr(n);
-				ft_putchar(' ');
-				ft_putnbr(x);
-				ft_putchar('\n');*/
 				s->n = n;
 				s->x = x;
+				//write(2, "3) place found\n", 15);
+				if (try_piece(s, n, x))
+					save_
 			}
 		}
 	}
-    //write(1, "8 2", 3);
-	//write(1, "\n", 1);
+}
+
+int		try_piece(t_state *s, int n, int x)
+{
+	if (n + s->piece_n > s->map_n)
 }
 
 void	place_piece(t_state *s)
 {
+	//write(2, "5) placing piece\n", 17);
+	s->player_n = 1;
 	ft_putnbr(s->n);
 	ft_putchar(' ');
 	ft_putnbr(s->x);
+	ft_putchar('\n');
 }
 
 void		print_matrix_test(char **matrix, int n, int x)
