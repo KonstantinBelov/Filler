@@ -18,6 +18,7 @@ void    init_state(t_state *s)
     s->map_n = 0;
     s->map_x = 0;
     s->map = NULL;
+    s->hmap = NULL;
     s->piece_n = 0;
     s->piece_x = 0;
     s->piece = NULL;
@@ -41,10 +42,14 @@ void	parse_player(t_state *s, char **line)
     if (s->player_n == 1)
     {
         s->p_char = 'O';
+        s->e_char = 'X';
         //write(2, "s->p_char saved as O\n", 21);
     }
     else if (s->player_n == 2)
+    {
         s->p_char = 'X';
+        s->e_char = 'O';
+    }
 }
 
 void	parse_map(t_state *s, char **line)
@@ -56,8 +61,12 @@ void	parse_map(t_state *s, char **line)
     s->map_n = ft_atoi(*line + 8);
     s->map_x = ft_atoi(*line + 10);
     s->map = (char **)malloc(s->map_n * sizeof(char *));
+    s->hmap = (int **)malloc(s->map_n * sizeof(int *));
     while (++i < s->map_n)
-        s->map[i] = (char *)malloc((s->map_x + 1) * sizeof(char)); 
+    {
+        s->map[i] = (char *)malloc((s->map_x + 1) * sizeof(char));
+        s->hmap[i] = (int *)malloc((s->map_x + 1) * sizeof(int));
+    }
     i = -1;
     get_next_line(0, line);
     while (++i < s->map_n)
@@ -112,9 +121,11 @@ int		main(void)
         //print_matrix_test(s->map, s->map_n, s->map_x);
         parse_piece(s, &line);
         //print_matrix_test(s->piece, s->piece_n, s->piece_x);
+        initiate_heat_map(s);
         heat_map(s);
         //write(2, "map heated\n", 11);
         //write(2, "1) about to start looking for a place\n", 38);
+        print_matrix_test_int(s->hmap, s->map_n, s->map_x);
         find_place(s);
         //write(2, "4) about to place piece\n", 24);
         place_piece(s);
