@@ -36,21 +36,19 @@ int				main(void);
 void			init_state(t_state *s);
 void			parse_player(t_state *s, char **line);
 void			parse_map(t_state *s, char **line);
-//char			**parse_map(t_state *s, char **line);
 int				parse_piece(t_state *s, char **line);
 void			initiate_heat_map(t_state *s);
 void			heat_map(t_state *s);
 void			heat_cell(t_state *s, int n, int x);
 void			find_place(t_state *s);
 int				try_piece(t_state *s, int n, int x);
-
+int				calc_score(t_state *s, int n, int x);
 void			place_piece(t_state *s);
 //void			del_state(t_state *s);
 //void    		filler(t_state *s, char **line);
 
 void			print_matrix_test(char **matrix, int n, int x);
 void			print_matrix_test_int(int **matrix, int n, int x);
-
-char	*ft_strstr_(const char *haystack, const char *needle);
+char			*ft_strstr_(const char *haystack, const char *needle);
 
 #endif

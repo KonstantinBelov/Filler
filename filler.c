@@ -122,6 +122,7 @@ int		main(void)
         parse_piece(s, &line);
         //print_matrix_test(s->piece, s->piece_n, s->piece_x);
         initiate_heat_map(s);
+        print_matrix_test_int(s->hmap, s->map_n, s->map_x);
         heat_map(s);
         //write(2, "map heated\n", 11);
         //write(2, "1) about to start looking for a place\n", 38);
@@ -134,28 +135,4 @@ int		main(void)
     ft_strdel(&line);
     //del_state(s);
     return (0);
-}
-
-char	*ft_strstr_(const char *haystack, const char *needle)
-{
-	unsigned int	i;
-	unsigned int	j;
-
-	if (*needle == '\0')
-		return ((char *)haystack);
-	i = 0;
-	while (haystack[i] != '\0')
-	{
-		j = 0;
-		while (needle[j] == haystack[i + j])
-		{
-			if (needle[j + 1] == '\0')
-			{
-				return ((char *)haystack + i);
-			}
-			j++;
-		}
-		i++;
-	}
-	return (NULL);
 }

@@ -14,7 +14,7 @@ NAME = resources/players/kbelov.filler
 
 FLAG = -Wall -Wextra -Werror
 
-SRC = filler.c output.c get_next_line.c #get_next_line_s.c get_next_line__.c
+SRC = filler.c heat.c output.c get_next_line.c test.c #get_next_line_s.c get_next_line__.c
 
 OBJ = *.o
 

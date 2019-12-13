@@ -101,6 +101,7 @@ int					ft_putline(char **files, char **lines, int fd, int rd);
 int					ft_sqrt_rounded_up(int n);
 int					ft_find_index(char *s, char c, int oc);
 int					ft_max(int a, int b);
+int					ft_min(int a, int b);
 void				ft_print_matrix(char **matrix);
 
 char				*ft_utoa(unsigned long long n);
