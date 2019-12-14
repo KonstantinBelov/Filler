@@ -59,4 +59,8 @@ pbots:
 	-p1 resources/players/hcao.filler -p2 resources/players/abanlin.filler
 
 cleanrepo:
-	@/bin/rm -rf filler_lldb filler_lldb.dSYM 
+	@/bin/rm -rf filler_lldb filler_lldb.dSYM filler_s filler_s.dSYM \
+	a.out a.out.dSYM
+
+fs:
+	gcc -fsanitize=address -O1 -fno-omit-frame-pointer -g $(FLAG) $(SRC) libft/libft.a -o filler_s

@@ -52,7 +52,7 @@ void	print_matrix_test_int(int **matrix, int n, int x)
 		while (++i < x)
         {
 			//write(2, &matrix[y][i], 4);
-            fprintf(stderr, " %d ", matrix[y][i]);
+            fprintf(stderr, " %2d ", matrix[y][i]);
         }
 		write (2, "\n", 1);
 	}

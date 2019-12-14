@@ -122,11 +122,11 @@ int		main(void)
         parse_piece(s, &line);
         //print_matrix_test(s->piece, s->piece_n, s->piece_x);
         initiate_heat_map(s);
-        print_matrix_test_int(s->hmap, s->map_n, s->map_x);
+        //print_matrix_test_int(s->hmap, s->map_n, s->map_x);
         heat_map(s);
         //write(2, "map heated\n", 11);
         //write(2, "1) about to start looking for a place\n", 38);
-        print_matrix_test_int(s->hmap, s->map_n, s->map_x);
+        //print_matrix_test_int(s->hmap, s->map_n, s->map_x);
         find_place(s);
         //write(2, "4) about to place piece\n", 24);
         place_piece(s);
