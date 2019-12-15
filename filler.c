@@ -28,9 +28,9 @@ void    init_state(t_state *s)
 
 void	parse_player(t_state *s, char **line)
 {
-    write(2, "parsing player\n", 15);
+    //write(2, "parsing player\n", 15);
     get_next_line(0, line);
-    fprintf(stderr, "got line: %s\n", *line);
+    //fprintf(stderr, "got line: %s\n", *line);
     if (ft_strstr(*line, "p1 : "))
     {
         s->player_n = 1;
@@ -131,8 +131,13 @@ int		main(void)
         //write(2, "4) about to place piece\n", 24);
         place_piece(s);
         //write(2, "piece placed\n", 13);
+        del_maps(s);
     }
-    ft_strdel(&line);
-    //del_state(s);
+    //ft_strdel(&line);
+    free(line);
+    //del_maps(s);
+    free(s);
+    //while (1)
+     //   ;
     return (0);
 }

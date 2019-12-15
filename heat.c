@@ -96,7 +96,28 @@ void	heat_cell(t_state *s, int n, int x)
 	if (top == -2 || right == -2 || bottom == -2 || left == -2)
 		s->hmap[n][x] = 1;
 	else if (top > 0 || right > 0 || bottom > 0 || left > 0)
-		s->hmap[n][x] = ft_max(ft_max(top, right), ft_max(bottom, left)) + 1;
+		s->hmap[n][x] = rise_heat(top, right, bottom, left);
+		//s->hmap[n][x] = ft_max(ft_max(top, right), ft_max(bottom, left)) + 1;
 	//else if (top == -1 || right == -1 || bottom == -1 || left == -1)
 		//s->hmap[n][x] = 10;
+}
+
+int		rise_heat(int t, int r, int b, int l)
+{
+	int res;
+
+	res = 0;
+	t > 0 ? res = t : 1;
+	r > 0 ? res = r : 1;
+	b > 0 ? res = b : 1;
+	l > 0 ? res = l : 1;
+	if (t > 0)
+		res = ft_min(res, t);
+	if (r > 0)
+		res = ft_min(res, r);
+	if (b > 0)
+		res = ft_min(res, b);
+	if (l > 0)
+		res = ft_min(res, l);
+	return (res + 1);
 }

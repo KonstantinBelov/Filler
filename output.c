@@ -28,10 +28,10 @@ void	find_place(t_state *s)
 	//write(2, "2) actually looking for a place\n", 32);
 	//fprintf(stderr, "s->p_char = %c\n", s->p_char);
 	n = -1;
-	while (++n + s->piece_n < s->map_n)
+	while (++n + s->piece_n <= s->map_n)
 	{
 		x = -1;
-		while (++x + s->piece_x < s->map_x)
+		while (++x + s->piece_x <= s->map_x)
 		{
 			//fprintf(stderr, "n & x values: %d %d\n", n, x);
 			//if (s->map[n][x] == s->p_char/*|| s->map[n][x] == s->p_char + 32*/)
@@ -110,10 +110,33 @@ void	place_piece(t_state *s)
 	ft_putchar('\n');
 }
 
-// void    del_state(t_state *state)
-// {
+void    del_maps(t_state *s)
+{
+	int n;
 
-// }
+	n = -1;
+	while (++n < s->map_n)
+	{
+		//ft_strdel(&(s->map[n]));
+		//if (s->map[n])
+		free(s->map[n]);
+		//if (s->hmap[n])
+		free(s->hmap[n]);
+	}
+	//if (s->map)
+	free(s->map);
+	//if (s->hmap)
+	free(s->hmap);
+	n = -1;
+	while (++n < s->piece_n)
+	{
+		//ft_strdel(&(s->piece[n]));
+		//if (s->piece[n])
+		free(s->piece[n]);
+	}
+	//if (s->piece)
+	free(s->piece);
+}
 
 // void    filler(t_state *s, char **line)
 // {
