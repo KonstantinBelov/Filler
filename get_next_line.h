@@ -20,22 +20,5 @@
 
 int		get_next_line(const int fd, char **line);
 int		ft_putline(char **files, char **lines, int fd, int rd);
-/*
-typedef struct	s_line
-{
-	char				*str;
-	int					fd;
-	struct s_line		*next;
-}				t_line;
 
-int		get_next_line__(const int fd, char **line);
-int		len(char *s, int c);
-char	*ft_str_ljoin(char **s1, char **s2);
-void	get_tail(const int fd, char *buf, t_line **head);
-int		reading(int fd, char **line, t_line **head);
-
-char	*ft_strnew_(size_t size);
-
-int		get_next_line(const int fd, char **line);
-*/
 #endif

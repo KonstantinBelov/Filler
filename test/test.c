@@ -14,9 +14,7 @@ char	*ft_strstr_(const char *haystack, const char *needle)
 		while (needle[j] == haystack[i + j])
 		{
 			if (needle[j + 1] == '\0')
-			{
 				return ((char *)haystack + i);
-			}
 			j++;
 		}
 		i++;
@@ -37,7 +35,6 @@ void	print_matrix_test(char **matrix, int n, int x)
 			write(2, &matrix[y][i], 1);
 		write (2, "\n", 1);
 	}
-	//write(1, "\n", 1);
 }
 
 void	print_matrix_test_int(int **matrix, int n, int x)
@@ -50,10 +47,7 @@ void	print_matrix_test_int(int **matrix, int n, int x)
 	{
 		i = -1;
 		while (++i < x)
-        {
-			//write(2, &matrix[y][i], 4);
             fprintf(stderr, " %2d ", matrix[y][i]);
-        }
 		write (2, "\n", 1);
 	}
 }

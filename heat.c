@@ -23,7 +23,7 @@ void	initiate_heat_map(t_state *s)
 		x = -1;
 		while (++x < s->map_x)
 		{
-			if (s->map[n][x] == '.')// || s->map[n][x] == s->p_char)
+			if (s->map[n][x] == '.')
 				s->hmap[n][x] = 0;
 			else if (s->map[n][x] == s->p_char)
 				s->hmap[n][x] = -1;
@@ -58,10 +58,14 @@ void	heat_map(t_state *s)
 				}
 			}
 		}
-		//fprintf(stderr, "****************************************************\n");
-		//print_matrix_test_int(s->hmap, s->map_n, s->map_x);
-		//fprintf(stderr, "====================================================\n");
 	}
+}
+
+void	heat_zeros(t_state *s)
+{
+	int n;
+	int	x;
+
 	n = -1;
 	while (++n < s->map_n)
 	{
@@ -97,9 +101,6 @@ void	heat_cell(t_state *s, int n, int x)
 		s->hmap[n][x] = 1;
 	else if (top > 0 || right > 0 || bottom > 0 || left > 0)
 		s->hmap[n][x] = rise_heat(top, right, bottom, left);
-		//s->hmap[n][x] = ft_max(ft_max(top, right), ft_max(bottom, left)) + 1;
-	//else if (top == -1 || right == -1 || bottom == -1 || left == -1)
-		//s->hmap[n][x] = 10;
 }
 
 int		rise_heat(int t, int r, int b, int l)

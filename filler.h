@@ -13,7 +13,6 @@
 #ifndef FILLER_H
 # define FILLER_H
 
-//# include "libft/libft.h"
 # include "get_next_line.h"
 
 typedef	struct	s_state
@@ -41,12 +40,12 @@ void			initiate_heat_map(t_state *s);
 void			heat_map(t_state *s);
 void			heat_cell(t_state *s, int n, int x);
 int				rise_heat(int t, int r, int b, int l);
+void			heat_zeros(t_state *s);
 void			find_place(t_state *s);
 int				try_piece(t_state *s, int n, int x);
-int				calc_score(t_state *s, int n, int x);
+int				calc_score(t_state *s, int n, int x, int best_score);
 void			place_piece(t_state *s);
 void			del_maps(t_state *s);
-//void    		filler(t_state *s, char **line);
 
 void			print_matrix_test(char **matrix, int n, int x);
 void			print_matrix_test_int(int **matrix, int n, int x);

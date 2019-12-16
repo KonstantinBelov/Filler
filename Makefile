@@ -14,7 +14,7 @@ NAME = resources/players/kbelov.filler
 
 FLAG = -Wall -Wextra -Werror
 
-SRC = filler.c heat.c output.c get_next_line.c test.c #get_next_line_s.c get_next_line__.c
+SRC = filler.c heat.c output.c get_next_line.c
 
 OBJ = *.o
 
@@ -26,7 +26,6 @@ all: $(NAME)
 
 $(NAME):
 	gcc $(FLAG) $(SRC) $(LIBFT) -o $(NAME)
-	#ar rcs $(NAME) $(OBJ)
 
 lib:
 	@make -C libft
@@ -52,7 +51,7 @@ norme:
 
 play:
 	./resources/filler_vm -f resources/maps/map00 \
-	-p1 resources/players/kbelov.filler -p2 resources/players/abanlin.filler
+	-p1 resources/players/kbelov.filler -p2 resources/players/superjeannot.filler
 
 pbots:
 	./resources/filler_vm -f resources/maps/map00 \
@@ -68,7 +67,7 @@ fs:
 
 visu:
 	./resources/filler_vm -f resources/maps/map00 \
-	-p1 resources/players/kbelov.filler -p2 resources/players/abanlin.filler \
+	-p1 resources/players/kbelov.filler -p2 resources/players/superjeannot.filler \
 	./visu
 
 echo:
@@ -96,5 +95,3 @@ echo:
 	.
 	.
 	." | ~/42_projects/filler/resources/players/kbelov.filler
-
-# leaks kbelov.filler

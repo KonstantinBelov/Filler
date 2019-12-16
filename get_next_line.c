@@ -65,15 +65,3 @@ int			get_next_line(const int fd, char **lines)
 		return (0);
 	return (ft_putline(files, lines, fd, bytes_read));
 }
-/*
-char		*ft_strnew_(size_t size)
-{
-	void	*mem;
-
-	mem = (char *)malloc(size + 1);
-	if (mem == NULL)
-		return (NULL);
-	ft_memset(mem, '\0', size + 1);
-	return (mem);
-}
-*/
